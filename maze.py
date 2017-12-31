@@ -71,7 +71,18 @@ class Maze:
         '''Returns the cell-coordinates of the neighboring cell in the specified
         direction. Trips an assertion if the given cell has no neighbor in the
         specified direction (e.g. the NORTH neighbor of cell (0,5))'''
-        pass
+        if direction == "North":
+            assert(cellRow - 1 >= 0)
+            return (cellRow - 1, cellCol)
+        elif direction == "South":
+            assert(cellRow + 1 <= self.numRows)
+            return (cellRow + 1, cellCol)
+        elif direction == "West":
+            assert(cellCol - 1 >= 0)
+            return (cellRow, cellCol - 1)
+        elif direction == "East":
+            assert(cellCol + 1 <= numCols)
+            return (cellRow, cellCol + 1)
 
 
     def hasWall(cellRow, cellCol, direction):
