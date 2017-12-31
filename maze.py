@@ -30,13 +30,23 @@ class Maze:
 
     def getCellArrayCoord(cellRow, cellColumn):
         '''Returns the expanded coordinates of the specified cell coordinates'''
-        pass
+        exp_r = 2 * cellRow + 1
+        exp_c = 2 * cellColumn + 1
+        return (exp_r, exp_c)
 
 
     def getWallArrayCoord(cellRow, cellColumn, direction):
         '''Returns the expanded coordinates of the wall on a specific side of
         a cell given in cell coordinates'''
-        pass
+        (exp_row, exp_col) = getCellArrayCoord(cellRow, cellColumn)
+        if direction == "North":
+            return (exp_row - 1, exp_col)
+        elif direction == "South":
+            return (exp_row + 1, exp_col)
+        elif direction == "West":
+            return (exp_row, exp_col - 1)
+        elif direction == "East":
+            return (exp_row, exp_col +1)
 
 
     def clear():
@@ -47,14 +57,14 @@ class Maze:
                 self.cells.append(MazeCell[0])
 
 
-    def getCell(cellRow, cellColumns):
+    def getCell(cellRow, cellColumn):
         '''Returns the value of the specified'''
-        pass
+        return self.cells[getExpArrayIndex(cellRow, cellColumn)]
 
 
     def setCell(cellRow, cellColumn, MazeCell_val):
         '''Puts maze cell val at designated row and column'''
-        pass
+        self.cells[getExpArrayIndex(cellRow, cellColumn)] = MazeCell_val
 
 
     def getNeighborCell(cellRow, cellCol, direction):
