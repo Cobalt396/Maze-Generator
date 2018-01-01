@@ -49,7 +49,9 @@ def main(rows, columns):
         #If the current location is the end we need to backtrack
         #to finish filling the maze
         if (current_r, current_c) == m.end:
-            path.pop()
+##            print(path)
+            p = path.pop()
+##            print(path)
             
         #This list will contain the direction options to expand the 
         #maze from the current Location.
@@ -57,54 +59,57 @@ def main(rows, columns):
         else:
             options = []
             
-        #Check that there is room to the NORTH
+            #Check that there is room to the NORTH
             if current_r > 0:
                 addDirectionOption(m, current_r, current_c, "North", options)
 
-        #Also check that there is room to the SOUTH
+            #Also check that there is room to the SOUTH
             if current_r < m.numRows - 1:
                 addDirectionOption(m, current_r, current_c, "South", options)
 
-        #Also check that there is room to the WEST
+            #Also check that there is room to the WEST
             if current_c > 0:
                 addDirectionOption(m, current_r, current_c, "West", options)
 
-        #Lastly, check that there is room to the EAST
+            #Lastly, check that there is room to the EAST
             if current_c < m.numColumns - 1:
                 addDirectionOption(m, current_r, current_c, "East", options)
 
-        #Now options should only a max of 4 options. These will exclude walls
-        #and locations that have already been visited.
-        assert(len(options) <= 4)
+            #Now options should only a max of 4 options. These will exclude walls
+            #and locations that have already been visited.
+            assert(len(options) <= 4)
 
-        #If options is empty (i.e surrounded by visited/walls):
-	#There are no directions we can move from the current cell! We
-	#need to backtrack.
-	#Note option size cannot be negative.
-        if len(options) == 0:
-            path.pop()
+            #If options is empty (i.e surrounded by visited/walls):
+            #There are no directions we can move from the current cell! We
+            #need to backtrack.
+            #Note option size cannot be negative.
+            if len(options) == 0:
+                path.pop()
 
-        #Now we can continue the loop.
-        else:
+            #Now we can continue the loop.
+            else:
 
-        #Choose a random direction! Then, clear the wall in that 
-	#direction, and move into the next cell.
-##            m.print()
-##            print(options)
-            dir_rand = random.choice(options)
+            #Choose a random direction! Then, clear the wall in that 
+            #direction, and move into the next cell.
+##                m.print()
+##                print(current_r, current_c)
+##                print(options)
+                dir_rand = random.choice(options)
+##                print()
+##                print(dir_rand)
 
-        #Now, clear the wall in that direction and 
-	#move into the next cell.
-            m.clearWall(current_r, current_c, dir_rand)
-            (next_row, next_col) = m.getNeighborCell(current_r, current_c,\
+            #Now, clear the wall in that direction and 
+            #move into the next cell.
+                m.clearWall(current_r, current_c, dir_rand)
+                (next_row, next_col) = m.getNeighborCell(current_r, current_c,\
                                                      dir_rand)
 
-        #Mark the cell at next location as VISITED. 
-	#Note that START is already marked as VISITED.
-            m.setVisited(next_row, next_col)
+            #Mark the cell at next location as VISITED. 
+            #Note that START is already marked as VISITED.
+                m.setVisited(next_row, next_col)
 
-        #Append next location onto the path.
-            path.append((next_row, next_col))
+            #Append next location onto the path.
+                path.append((next_row, next_col))
     m.print()
 
 
