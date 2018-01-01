@@ -88,17 +88,24 @@ class Maze:
     def hasWall(cellRow, cellCol, direction):
         '''Returns true if there is a wall in the specified direction from the
         given cell, false otherwise'''
-        pass
+        (exp_row, exp_col) = getWallArrayCoord(cellRow, cellCol, direction)
+        index = getArrayIndex(exp_row, exp_col)
+        if self.cells[index] == "Wall":
+            return true
+        return false
 
 
     def setWall(cellRow, cellCol, direction):
         '''Puts a wall on the specified side of the given cell'''
-        pass
+        (exp_row, exp_col) = getWallArrayCoord(cellRow, cellCol, direction)
+        self.cells[getArrayIndex(exp_row, exp_col)] = "Wall"
 
 
     def clearWall(cellRow, cellCol, direction):
         '''Removes a wall on the specified side of the given cell'''
-        pass
+        (exp_row, exp_col) = getWallArrayCoord(cellRow, cellCol, direction)
+        index = getArrayIndex(exp_row, exp_col)
+        self.cells[index] = "Empty"
 
 
     def setAllWalls():
