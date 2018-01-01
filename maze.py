@@ -156,6 +156,15 @@ class Maze:
                 top_wall += '   +'
         print(top_wall)
 
+        def print_cell(content, r, c):
+            '''Prints the cell and the wall for a given content'''
+            current = content
+            if self.hasWall(r, c, "East"):
+                current += '|'
+            else:
+                current += ' '
+            return current
+        
         for r in range(self.numRows):
             current_row = ''
 
@@ -166,40 +175,19 @@ class Maze:
             
             for c in range(self.numColumns):
                 if self.start == (r, c):
-                    current_row += ' S '
-                    if self.hasWall(r, c, "East"):
-                        current_row += '|'
-                    else:
-                        current_row += ' '
+                    current_row += print_cell(' S ', r, c)
                         
                 elif self.end == (r, c):
-                    current_row += ' E '
-                    if self.hasWall(r, c, "East"):
-                        current_row += '|'
-                    else:
-                        current_row += ' '
+                    current_row += print_cell(' E ', r, c)
 
                 elif self.getCell(r, c) == "Empty":
-                    current_row += '   '
-                    # current_row += ' ' + str(self.getExpArrayIndex(r, c))
-                    if self.hasWall(r, c, "East"):
-                        current_row += '|'
-                    else:
-                        current_row += ' '
+                    current_row += print_cell('   ', r, c)
 
                 elif self.getCell(r, c,) == "Visited":
-                    current_row += '   '
-                    if self.hasWall(r, c, "East"):
-                        current_row += '|'
-                    else:
-                        current_row += ' '
+                    current_row += print_cell('   ', r, c)
                         
                 elif self.getCell(r, c,) == "Wall":
-                    current_row += ' W '
-                    if self.hasWall(r, c, "East"):
-                        current_row += '|'
-                    else:
-                        current_row += ' '
+                    current_row += print_cell(' W ', r, c)
 
             print(current_row)
 
@@ -214,5 +202,4 @@ class Maze:
         
 
     
-
 
