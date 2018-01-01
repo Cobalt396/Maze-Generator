@@ -24,9 +24,9 @@ def numWalls(Maze, cellRow, cellCol):
 
     return wall_num
 
-def usage():
+def usage(name):
     ''' Show usage imformation for our program'''
-    print("usage: 'genmaze.py' n f")
+    print("usage:", name, "n f")
     print("n is an integer of total maze rows")
     print("f is an integer of total maze columns")
 
@@ -34,7 +34,7 @@ def main():
     ''' This function generates the maze'''
     if len(sys.argv) < 3:
         print("Too Few Arguments!")
-        usage()
+        usage(sys.argv[0])
         # print(sys.argv)
 
     elif len(sys.argv) > 3:
