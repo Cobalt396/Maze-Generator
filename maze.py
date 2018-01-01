@@ -81,7 +81,7 @@ class Maze:
             assert(cellCol - 1 >= 0)
             return (cellRow, cellCol - 1)
         elif direction == "East":
-            assert(cellCol + 1 <= numCols)
+            assert(cellCol + 1 <= self.numColumns)
             return (cellRow, cellCol + 1)
 
 
@@ -181,6 +181,7 @@ class Maze:
 
                 elif self.getCell(r, c) == "Empty":
                     current_row += '   '
+                    # current_row += ' ' + str(self.getExpArrayIndex(r, c))
                     if self.hasWall(r, c, "East"):
                         current_row += '|'
                     else:
@@ -205,7 +206,7 @@ class Maze:
             current_floor = '+'
             if r < self.numRows:
                 for c in range(self.numColumns):
-                    if self.hasWall(0, c, "South"):
+                    if self.hasWall(r, c, "South"):
                         current_floor += '---+'
                     else:
                         current_floor += '   +'
